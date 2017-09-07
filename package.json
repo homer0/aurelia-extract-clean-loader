@@ -24,6 +24,9 @@
       "eslint-plugin-import": "2.7.0",
       "eslint-plugin-node": "5.1.1",
 
+      "esdoc": "1.0.2",
+      "esdoc-standard-plugin": "1.0.0",
+
       "chalk": "2.1.0"
     },
     "engine-strict": true,
