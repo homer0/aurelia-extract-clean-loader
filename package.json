@@ -15,7 +15,10 @@
       "loader-utils": "1.1.0"
     },
     "devDependencies": {
-
+      "jest-cli": "21.0.1",
+      "jest-ex": "2.0.1",
+      "jasmine-expect": "3.7.1",
+      "chalk": "2.1.0"
     },
     "engine-strict": true,
     "engines": {
@@ -24,6 +27,9 @@
     },
     "main": "src/index.js",
     "scripts": {
-
+      "install-hooks": "./utils/hooks/install",
+      "test": "./utils/scripts/test",
+      "lint": "./utils/scripts/lint",
+      "docs": "./utils/scripts/docs"
     }
 }

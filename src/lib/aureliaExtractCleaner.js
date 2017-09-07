@@ -1,18 +1,16 @@
 class AureliaExtractCleaner {
 
-  constructor(source, options) {
+  constructor(source, options = {}) {
     this.source = source;
     this.options = Object.assign({
       extensions: ['css', 'scss', 'sass', 'less'],
-      attribute: {
-        name: 'extract',
-        value: 'true',
-      },
+      attributeName: 'extract',
+      attributeValue: 'true',
     }, options);
 
     this._regexs = {
       requires: /<require.+?from=\\?["|'].*?\\?["|'].*?>(?:.+?)?<\/require>/ig,
-      attributes: /(\S+)=\\\\?["']?((?:.(?!["']?\s+(?:\S+)=|\\\\?[>"']))+.)["']?/ig,
+      attributes: /(\S+)=\\?["']?((?:.(?!["']?\s+(?:\S+)=|\\?[>"']))+.)["']?/ig,
     };
   }
 
@@ -45,25 +43,21 @@ class AureliaExtractCleaner {
   }
 
   _getTagsToExtract(tags) {
-    const { extensions, attribute } = this.options;
+    const { extensions, attributeName, attributeValue } = this.options;
     return tags.filter((tagMatch) => {
       const [tag] = tagMatch;
       const attrs = this._getTagAttributes(tag);
       const extension = attrs.from.split('.').pop().toLowerCase();
       const validExtension = attrs.from && extensions.includes(extension);
-      const shouldExtract = attrs[attribute.name] === attribute.value;
+      const shouldExtract = attrs[attributeName] === attributeValue;
       return validExtension && shouldExtract;
     });
   }
 
   _removeExtractedTags(tags) {
-    console.log('\n==================================\n');
-    console.log('\nBEFORE: ', this.source);
     tags.forEach((tag) => {
       this.source = this.source.replace(tag, '');
     });
-    console.log('\nAFTER: ', this.source);
-    console.log('\n==================================\n');
   }
 
   _getTagAttributes(tag) {

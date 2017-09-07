@@ -1,0 +1,6 @@
+{
+  "automock": true,
+  "unmockedModulePathPatterns": ["/node_modules/"],
+  "resetMocks": true,
+  "collectCoverage": true
+}
