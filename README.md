@@ -1,6 +1,6 @@
 # Aurelia Extract Clean
 
-[![Build Status](https://travis-ci.org/aurelia-extract-clean-loader.svg?branch=master)](https://travis-ci.org/aurelia-extract-clean-loader) [![Coverage Status](https://coveralls.io/repos/aurelia-extract-clean-loader/badge.svg?branch=master&service=github)](https://coveralls.io/github/aurelia-extract-clean-loader?branch=master) [![Dependencies status](https://david-dm.org/aurelia-extract-clean-loader.svg)](https://david-dm.org/aurelia-extract-clean-loader) [![Dev dependencies status](https://david-dm.org/aurelia-extract-clean-loader/dev-status.svg)](https://david-dm.org/aurelia-extract-clean-loader#info=devDependencies)
+[![Build Status](https://travis-ci.org/homer0/aurelia-extract-clean-loader.svg?branch=master)](https://travis-ci.org/homer0/aurelia-extract-clean-loader) [![Coverage Status](https://coveralls.io/repos/homer0/aurelia-extract-clean-loader/badge.svg?branch=master&service=github)](https://coveralls.io/github/homer0/aurelia-extract-clean-loader?branch=master) [![Dependencies status](https://david-dm.org/homer0/aurelia-extract-clean-loader.svg)](https://david-dm.org/homer0/aurelia-extract-clean-loader) [![Dev dependencies status](https://david-dm.org/homer0/aurelia-extract-clean-loader/dev-status.svg)](https://david-dm.org/homer0/aurelia-extract-clean-loader#info=devDependencies)
 
 Remove [Aurelia](http://aurelia.io) `require` tags of files that are being extracted using the Webpack's [Extract Text Plugin](https://github.com/webpack-contrib/extract-text-webpack-plugin).
 
