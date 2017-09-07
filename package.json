@@ -1,6 +1,6 @@
 {
     "name": "aurelia-extract-clean-loader",
-    "description": "...",
+    "description": "Remove Aurelia require tags of files that are being extracted using the Webpack's Extract Text Plugin",
     "version": "0.0.1",
     "repository": "homer0/aurelia-extract-clean-loader",
     "author": "Leonardo Apiwan (@homer0) <me@homer0.com>",
