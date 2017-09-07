@@ -1,5 +1,4 @@
 class AureliaExtractCleaner {
-
   constructor(source, options = {}) {
     this.source = source;
     this.options = Object.assign({
@@ -72,7 +71,6 @@ class AureliaExtractCleaner {
 
     return attrs;
   }
-
 }
 
 module.exports = AureliaExtractCleaner;
