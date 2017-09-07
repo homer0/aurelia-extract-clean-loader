@@ -1,0 +1,29 @@
+{
+    "name": "aurelia-extract-clean-loader",
+    "description": "...",
+    "version": "0.0.1",
+    "repository": "homer0/aurelia-extract-clean-loader",
+    "author": "Leonardo Apiwan (@homer0) <me@homer0.com>",
+    "license": "MIT",
+    "keywords": [
+        "aurelia",
+        "webpack",
+        "extract",
+        "stylesheet"
+    ],
+    "dependencies": {
+      "loader-utils": "1.1.0"
+    },
+    "devDependencies": {
+
+    },
+    "engine-strict": true,
+    "engines": {
+        "node": ">=6.10.0",
+        "npm": ">=3.0.0"
+    },
+    "main": "src/index.js",
+    "scripts": {
+
+    }
+}
