@@ -119,7 +119,7 @@ I use [Jest](https://facebook.github.io/jest/) to test the project. The configur
 
 ### Linting
 
-I use [ESlint](http://eslint.org) to validate all the JS code. The main configuration file is on `./.eslintrc`, there's also an `./.eslintignore` to ignore some files on the process, and the script that runs it is on `./utils/scripts/lint`.
+I use [ESLint](http://eslint.org) to validate all the JS code. The main configuration file is on `./.eslintrc`, there's also an `./.eslintignore` to ignore some files on the process, and the script that runs it is on `./utils/scripts/lint`.
 
 It's worth mentioning that there's another `.eslintrc` inside the `tests` directory that enables the `jest` environment.
 
