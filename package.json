@@ -27,7 +27,9 @@
       "esdoc": "1.0.2",
       "esdoc-standard-plugin": "1.0.0",
 
-      "chalk": "2.1.0"
+      "chalk": "2.1.0",
+
+      "coveralls": "2.13.1"
     },
     "engine-strict": true,
     "engines": {
