@@ -49,7 +49,7 @@ class AureliaExtractCleaner {
      * @ignore
      */
     this._regexs = {
-      requires: /<require.+?from=\\?["|'].*?\\?["|'].*?>(?:.+?)?<\/require>/ig,
+      requires: /<require.+?from=\\?["|'].*?\\?["|'].*?><\/require>/ig,
       attributes: /(\S+)=\\?["']?((?:.(?!["']?\s+(?:\S+)=|\\?[>"']))+.)["']?/ig,
     };
   }

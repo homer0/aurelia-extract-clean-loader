@@ -86,6 +86,20 @@ describe('AureliaExtractCleaner', () => {
     `.trim());
   });
 
+  it('shouldn\'t remove a tag located after one to remove', () => {
+    // Given
+    const tagToIgnore = '<require from="some/other/path/to/file.scss"></require>';
+    const customCode = `
+      <require from="some/path/to/file.scss" extract="true"></require>
+      ${tagToIgnore}
+    `;
+    // When
+    const cleaner = new AureliaExtractCleaner(customCode);
+    const processed = cleaner.process().trim();
+    // Then
+    expect(processed).toBe(tagToIgnore);
+  });
+
   it('shouldn\'t change the code if there are no require tags', () => {
     // Given
     const customCode = '<gotham>Batman</gotham>';
