@@ -5,6 +5,8 @@
       MemberExpression: 0,
     }],
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "lines-between-class-members": "off",
+    "operator-linebreak": ["error", "after"]
   }
 }

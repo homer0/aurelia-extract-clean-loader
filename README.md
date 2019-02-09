@@ -26,7 +26,7 @@ Well, that's why I wrote this loader: **I want to `require` my stylesheets on my
 |--------------|--------------------------------------------------------------------|
 | Package      | aurelia-extract-clean-loader                                                 |
 | Description  | Remove Aurelia require tags of files that are being extracted using the Webpack's Extract Text Plugin. |
-| Node Version | >= v6.10.0                                                          |
+| Node Version | >= v8.0.0                                                          |
 
 ## Usage
 
@@ -101,17 +101,18 @@ That example would make the loader remove `require` tags like this one:
 Before doing anything, install the repository hooks:
 
 ```bash
-[npm-yarn] run install-hooks
+# You can either use npm or yarn, it doesn't matter
+yarn run hooks
 ```
 
-### [NPM-Yarn] Tasks
+### NPM/Yarn Tasks
 
-| Task                           | Description                         |
-|--------------------------------|-------------------------------------|
-| `[npm-yarn] run install-hooks` | Install the GIT repository hooks.   |
-| `[npm-yarn] test`              | Run the project unit tests.         |
-| `[npm-yarn] run lint`          | Lint the project code.              |
-| `[npm-yarn] run docs`          | Generate the project documentation. |
+| Task                     | Description                         |
+|--------------------------|-------------------------------------|
+| `yarn run hooks`         | Install the GIT repository hooks.   |
+| `yarn test`              | Run the project unit tests.         |
+| `yarn run lint`          | Lint the project code.              |
+| `yarn run docs`          | Generate the project documentation. |
 
 ### Testing
 
