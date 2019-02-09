@@ -1,2 +1,2 @@
 #!/bin/bash -e
-esdoc -c .esdocrc.json
+esdoc -c .esdoc.json
