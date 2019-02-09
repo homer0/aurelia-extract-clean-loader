@@ -1,46 +1,46 @@
 {
-    "name": "aurelia-extract-clean-loader",
-    "description": "Remove Aurelia require tags of files that are being extracted using the Webpack's Extract Text Plugin",
-    "version": "1.0.1",
-    "repository": "homer0/aurelia-extract-clean-loader",
-    "author": "Leonardo Apiwan (@homer0) <me@homer0.com>",
-    "license": "MIT",
-    "keywords": [
-        "aurelia",
-        "webpack",
-        "extract",
-        "stylesheet"
-    ],
-    "dependencies": {
-      "loader-utils": "^1.2.3"
-    },
-    "devDependencies": {
-      "jest-cli": "24.1.0",
-      "jest-ex": "6.0.0",
-      "jasmine-expect": "4.0.1",
+  "name": "aurelia-extract-clean-loader",
+  "description": "Remove Aurelia require tags of files that are being extracted using the Webpack's Extract Text Plugin",
+  "version": "1.0.1",
+  "repository": "homer0/aurelia-extract-clean-loader",
+  "author": "Leonardo Apiwan (@homer0) <me@homer0.com>",
+  "license": "MIT",
+  "keywords": [
+    "aurelia",
+    "webpack",
+    "extract",
+    "stylesheet"
+  ],
+  "dependencies": {
+    "loader-utils": "^1.2.3"
+  },
+  "devDependencies": {
+    "jest-cli": "24.1.0",
+    "jest-ex": "6.0.0",
+    "jasmine-expect": "4.0.1",
 
-      "eslint": "5.13.0",
-      "eslint-config-airbnb-base": "13.1.0",
-      "eslint-plugin-import": "2.16.0",
-      "eslint-plugin-node": "8.0.1",
+    "eslint": "5.13.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-node": "8.0.1",
 
-      "esdoc": "1.1.0",
-      "esdoc-standard-plugin": "1.0.0",
+    "esdoc": "1.1.0",
+    "esdoc-standard-plugin": "1.0.0",
 
-      "chalk": "2.4.2",
+    "chalk": "2.4.2",
 
-      "coveralls": "3.0.2"
-    },
-    "engine-strict": true,
-    "engines": {
-        "node": ">=8.0.0",
-        "npm": ">=3.0.0"
-    },
-    "main": "src/index.js",
-    "scripts": {
-      "install-hooks": "./utils/hooks/install",
-      "test": "./utils/scripts/test",
-      "lint": "./utils/scripts/lint",
-      "docs": "./utils/scripts/docs"
-    }
+    "coveralls": "3.0.2"
+  },
+  "engine-strict": true,
+  "engines": {
+    "node": ">=8.0.0",
+    "npm": ">=3.0.0"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "install-hooks": "./utils/hooks/install",
+    "test": "./utils/scripts/test",
+    "lint": "./utils/scripts/lint",
+    "docs": "./utils/scripts/docs"
+  }
 }
