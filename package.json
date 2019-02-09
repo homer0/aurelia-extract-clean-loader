@@ -15,21 +15,19 @@
     "loader-utils": "^1.2.3"
   },
   "devDependencies": {
-    "jest-cli": "24.1.0",
-    "jest-ex": "6.0.0",
-    "jasmine-expect": "4.0.1",
-
+    "wootils": "^2.0.0",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
     "eslint-plugin-node": "8.0.1",
-
+    "@babel/core": "7.2.2",
+    "@babel/preset-env": "7.3.1",
+    "jest-ex": "6.0.0",
+    "jest-cli": "24.1.0",
+    "jasmine-expect": "4.0.1",
     "esdoc": "1.1.0",
     "esdoc-standard-plugin": "1.0.0",
     "esdoc-node": "1.0.4",
-
-    "chalk": "2.4.2",
-
     "coveralls": "3.0.2"
   },
   "engine-strict": true,
