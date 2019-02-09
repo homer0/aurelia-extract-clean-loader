@@ -37,7 +37,7 @@
   },
   "main": "src/index.js",
   "scripts": {
-    "install-hooks": "./utils/hooks/install",
+    "hooks": "./utils/hooks/install",
     "test": "./utils/scripts/test",
     "lint": "./utils/scripts/lint",
     "docs": "./utils/scripts/docs"
