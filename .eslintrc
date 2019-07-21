@@ -1,8 +1,8 @@
 {
   "extends": "airbnb-base",
   "rules": {
-    indent: ['error', 2, {
-      MemberExpression: 0,
+    "indent": ["error", 2, {
+      "MemberExpression": 0
     }],
     "no-underscore-dangle": ["error", { "allowAfterThis": true }],
     "import/no-extraneous-dependencies": "off",

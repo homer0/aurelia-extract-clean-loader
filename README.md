@@ -98,18 +98,10 @@ That example would make the loader remove `require` tags like this one:
 
 ## Development
 
-Before doing anything, install the repository hooks:
-
-```bash
-# You can either use npm or yarn, it doesn't matter
-yarn run hooks
-```
-
 ### NPM/Yarn Tasks
 
 | Task                     | Description                         |
 |--------------------------|-------------------------------------|
-| `yarn run hooks`         | Install the GIT repository hooks.   |
 | `yarn test`              | Run the project unit tests.         |
 | `yarn run lint`          | Lint the project code.              |
 | `yarn run docs`          | Generate the project documentation. |
