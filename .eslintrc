@@ -1,12 +1,5 @@
 {
-  "extends": "airbnb-base",
-  "rules": {
-    "indent": ["error", 2, {
-      "MemberExpression": 0
-    }],
-    "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-    "import/no-extraneous-dependencies": "off",
-    "lines-between-class-members": "off",
-    "operator-linebreak": ["error", "after"]
-  }
+  "root": true,
+  "plugins": ["homer0"],
+  "extends": ["plugin:homer0/node"]
 }

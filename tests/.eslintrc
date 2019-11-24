@@ -1,13 +1,5 @@
 {
-  "extends": "airbnb-base",
-  "rules": {
-    indent: ['error', 2, {
-      MemberExpression: 0,
-    }],
-    "import/no-unresolved": "off",
-    "import/no-absolute-path": "off"
-  },
-  "env": {
-    "jest": true
-  }
+  "root": true,
+  "plugins": ["homer0"],
+  "extends": ["plugin:homer0/jest"]
 }
