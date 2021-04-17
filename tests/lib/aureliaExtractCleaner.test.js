@@ -1,7 +1,6 @@
-jest.unmock('/src/lib/aureliaExtractCleaner');
+jest.unmock('../../src/lib/aureliaExtractCleaner');
 
-require('jasmine-expect');
-const AureliaExtractCleaner = require('/src/lib/aureliaExtractCleaner');
+const AureliaExtractCleaner = require('../../src/lib/aureliaExtractCleaner');
 
 describe('AureliaExtractCleaner', () => {
   it("should be a class and only available using 'new'", () => {
@@ -15,8 +14,7 @@ describe('AureliaExtractCleaner', () => {
   });
 
   it('should be able to use default options', () => {
-    // Given
-    // When
+    // Given/When
     const cleaner = new AureliaExtractCleaner('code');
     // Then
     expect(cleaner.options).toEqual({
