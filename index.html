@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8" />
+    <title>Home - aurelia-extract-clean-loader docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css" />
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css" />
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+    <link rel="shortcut icon" href="icons/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="48x48" href="icons/favicon-48.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/favicon-72.png" />
+    <link rel="apple-touch-icon" sizes="96x96" href="icons/favicon-96.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/favicon-144.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="256x256" href="icons/favicon-256.png" />
+    <link rel="apple-touch-icon" sizes="384x384" href="icons/favicon-384.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/favicon-512.png" />
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <h2><a href="index.html" class="home-link">aurelia-extract-clean-loader</a></h2><ul class="ref-links">
+            <li><a
+                class="ref-link -yarn"
+                title="View the package on Yarn"
+                href="https://yarnpkg.com/package/aurelia-extract-clean-loader"
+                target="_blank"
+            >View the package on Yarn</a></li>
+        
+
+            <li><a
+                class="ref-link -github"
+                title="Go to the GitHub repository"
+                href="https://github.com/homer0/aurelia-extract-clean-loader"
+                target="_blank"
+            >Go to the GitHub repository</a></li>
+        
+
+            <li><a
+                class="ref-link -npm"
+                title="View the package on NPM"
+                href="https://www.npmjs.com/package/aurelia-extract-clean-loader"
+                target="_blank"
+            >View the package on NPM</a></li>
+        </ul><h3>Global</h3><ul><li><a href="global.html#aureliaExtractCleanLoader">aureliaExtractCleanLoader</a></li><li><a href="global.html#loaderUtils">loaderUtils</a></li></ul>
+</nav>
+
+<div id="main">
+    
+
+    
+
+
+
+    
+
+
+    <section class="package">
+        <h3> </h3>		
+    </section>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    <section class="readme usertext">
+        <article><h1>Aurelia Extract Clean</h1>
+<p><a href="https://github.com/homer0/aurelia-extract-clean-loader/actions?query=workflow%3ATest"><img src="https://img.shields.io/github/workflow/status/homer0/aurelia-extract-clean-loader/Test/main?style=flat-square" alt="GitHub Workflow Status (main)"></a>
+<a href="https://coveralls.io/github/homer0/aurelia-extract-clean-loader?branch=main"><img src="https://img.shields.io/coveralls/github/homer0/aurelia-extract-clean-loader.svg?style=flat-square" alt="Coveralls github"></a>
+<a href="https://david-dm.org/homer0/aurelia-extract-clean-loader"><img src="https://img.shields.io/david/dev/homer0/aurelia-extract-clean-loader.svg?style=flat-square" alt="David"></a></p>
+<p>Remove <a href="https://aurelia.io">Aurelia</a> <code>require</code> tags of files that are being extracted using the Webpack's <a href="https://yarnpkg.com/en/package/mini-css-extract-plugin">Mini CSS extract plugin</a>.</p>
+<blockquote>
+<p>If you are wondering why I built this, go to the <a href="#motivation">Motivation</a> section.</p>
+</blockquote>
+<h2>Usage</h2>
+<p>On the <code>modules.rules</code> section of your Webpack configuration, you probably already have the <code>html-loader</code> to handle Aurelia's views, you just need to add <code>aurelia-extract-clean-loader</code> before it so it will take HTML, parse it and remove the extracted <code>require</code>s:</p>
+<pre class="prettyprint source lang-js"><code>...
+{
+  test: /\.html$/,
+  use: [
+    'aurelia-extract-clean-loader',
+    'html-loader',
+  ],
+},
+...
+</code></pre>
+<p>Now, it wouldn't be that cool if the loader removed ALL your <code>require</code>s assuming they are being extracted right? Well, for that reason is that <strong>you need to add an special attribute</strong> to the tags you want removed:</p>
+<pre class="prettyprint source lang-html"><code>&lt;template>
+  &lt;require from=&quot;./my-styles.scss&quot; extract=&quot;true&quot;>&lt;/require>
+  &lt;require from=&quot;some/component&quot;>&lt;/require>
+&lt;template>
+</code></pre>
+<p>On the case of the code above, the <code>require</code> for <code>my-styles</code> will be removed and the other won't.</p>
+<h2>Options</h2>
+<p>The loader has a few options that you can modify if the default values don't suit your needs:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>extensions</code></td>
+<td><code>Array</code></td>
+<td>The list of extensions to validate on the <code>require</code> tags. <strong>Default:</strong> <code>['css', 'scss', 'sass', 'less']</code>.</td>
+</tr>
+<tr>
+<td><code>attributeName</code></td>
+<td><code>String</code></td>
+<td>The name of the attribute the <code>require</code> needs to have in order to be removed. <strong>Default:</strong> <code>'extract'</code>.</td>
+</tr>
+<tr>
+<td><code>attributeValue</code></td>
+<td><code>String</code></td>
+<td>The value of the custom attribute the <code>require</code> needs to have in order to be removed. <strong>Default:</strong> <code>'true'</code>.</td>
+</tr>
+</tbody>
+</table>
+<p>To modify any of them, just change the syntax to an object and use the <code>options</code> key:</p>
+<pre class="prettyprint source lang-js"><code>...
+{
+  test: /\.html$/,
+  use: [
+    {
+      loader: 'aurelia-extract-clean-loader',
+      options: {
+        extensions: ['xcss'],
+        attributeName: 'remove',
+        attributeValue: 'yes',
+      },
+    },
+    'html-loader',
+  ],
+},
+...
+</code></pre>
+<p>That example would make the loader remove <code>require</code> tags like this one:</p>
+<pre class="prettyprint source lang-html"><code>&lt;template>
+  &lt;require from=&quot;some-weird-file.xcss&quot; remove=&quot;yes&quot;>&lt;/require>
+&lt;/template>
+</code></pre>
+<h2>Development</h2>
+<h3>NPM/Yarn Tasks</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test</code></td>
+<td>Run the project unit tests.</td>
+</tr>
+<tr>
+<td><code>lint</code></td>
+<td>Lint the modified files.</td>
+</tr>
+<tr>
+<td><code>lint:all</code></td>
+<td>Lint the entire project code.</td>
+</tr>
+<tr>
+<td><code>docs</code></td>
+<td>Generate the project documentation.</td>
+</tr>
+</tbody>
+</table>
+<h3>Repository hooks</h3>
+<p>I use <a href="https://yarnpkg.com/package/husky"><code>husky</code></a> to automatically install the repository hooks so...</p>
+<ol>
+<li>The code will be formatted and linted before any commit.</li>
+<li>The dependencies will be updated after every merge.</li>
+<li>The tests will run before pushing.</li>
+</ol>
+<h4>Commits convention</h4>
+<p>I use <a href="https://www.conventionalcommits.org">conventional commits</a> with <a href="https://yarnpkg.com/package/commitizen"><code>commitizen</code></a> in order to support semantic releases. The one that sets it up is actually husky, it installs a script that runs commitizen on the <code>git commit</code> command.</p>
+<p>The hook for this is on <code>./utils/hooks/prepare-commit-msg</code> and the configuration for comitizen is on the <code>config.commitizen</code> property of the <code>package.json</code>.</p>
+<h3>Releases</h3>
+<p>I use <a href="https://yarnpkg.com/package/semantic-release"><code>semantic-release</code></a> and a GitHub action to automatically release on NPM everything that gets merged to main.</p>
+<p>The configuration for <code>semantic-release</code> is on <code>./releaserc</code> and the workflow for the release is on <code>./.github/workflow/release.yml</code>.</p>
+<h3>Testing</h3>
+<p>I use <a href="https://facebook.github.io/jest/">Jest</a> to test the project.</p>
+<p>The configuration file is on <code>./.jestrc.js</code>, the tests are on <code>./tests</code> and the script that runs it is on <code>./utils/scripts/test</code>.</p>
+<h3>Linting &amp;&amp; Formatting</h3>
+<p>I use <a href="https://eslint.org">ESlint</a> with <a href="https://yarnpkg.com/en/package/@homer0/eslint-plugin">my own custom configuration</a> to validate all the JS code. The configuration file for the project code is on <code>./.eslintrc</code> and the one for the tests is on <code>./tests/.eslintrc</code>. There's also an <code>./.eslintignore</code> to exclude some files on the process. The script that runs it is on <code>./utils/scripts/lint-all</code>.</p>
+<p>For formatting I use <a href="https://prettier.io">Prettier</a> with <a href="https://yarnpkg.com/en/package/@homer0/prettier-config">my custom configuration</a>. The configuration file for the project code is on <code>./.prettierrc</code>.</p>
+<h3>Documentation</h3>
+<p>I use <a href="https://jsdoc.app">JSDoc</a> to generate an HTML documentation site for the project.</p>
+<p>The configuration file is on <code>./.jsdoc.js</code> and the script that runs it is on <code>./utils/scripts/docs</code>.</p>
+<h2>Motivation</h2>
+<blockquote>
+<p>I put this at the end because no one usually reads it :P.</p>
+</blockquote>
+<p>A few weeks ago I started playing around with <a href="https://aurelia.io">Aurelia</a> and I really liked it. I think one of the best features is how it solves separation of concerns by using the <code>require</code> tag on the views to specify the dependencies of the UI while keeping the controller/model focused on the logic.</p>
+<p>Now, I'm also a big fan of <a href="https://webpack.js.org/">Webpack</a>, so is not surprise I'm using both of them together; but here's the problem that made me write this loader:</p>
+<p>I'm sure any Webpack user out there uses, or at least is aware of, the <a href="https://yarnpkg.com/en/package/mini-css-extract-plugin">Mini CSS extract plugin</a> (the updated version of the old <a href="https://github.com/webpack-contrib/extract-text-webpack-plugin">Extract Text Plugin</a>): A plugin that takes all the chunks of an specific type and puts them together on a single file.</p>
+<p>Most people (like me) uses it to extract stylesheets and create a &quot;style bundle&quot;.</p>
+<p>The problem is that when you have a <code>require</code> tag for a stylesheet (or any file) that is going to be extracted by the the plugin, the contents of the file end up on your extracted bundle, but since the tag is still on the template, Aurelia will try to access it on runtime and kill your app with an error.</p>
+<p>The way this was solved on <a href="https://github.com/aurelia/skeleton-navigation/blob/master/skeleton-esnext-webpack/">the official Aurelia Webpack skeleton</a> was by <a href="https://github.com/aurelia/skeleton-navigation/blob/master/skeleton-esnext-webpack/webpack.config.js#L62-L68">removing the Extract Text Plugin from the stylesheets required by views</a> and let Aurelia inject the styles on the <code>&lt;head&gt;</code> during runtime.</p>
+<p>I really wanted to use the plugin and put all my styles on a bundle and only inject on the <code>&lt;head&gt;</code> what I consider important, but the only workaround was to do and <code>import</code>/<code>require</code> on the model/controller file, so it wouldn't be detected by Aurelia.</p>
+<p>Well, that's why I wrote this loader: <strong>I want to <code>require</code> my stylesheets on my views and I want the Mini CSS extract plugin to bundle them</strong>.</p></article>
+    </section>
+
+
+
+
+
+
+
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> using a forked <a href="https://github.com/homer0/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
