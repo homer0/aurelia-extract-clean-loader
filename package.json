@@ -43,6 +43,11 @@
       "post-merge": "./utils/hooks/post-merge"
     }
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "scripts": {
     "hooks": "./utils/hooks/install",
     "test": "./utils/scripts/test",
