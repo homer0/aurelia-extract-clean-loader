@@ -1,22 +1,20 @@
-jest.unmock('/src/lib/aureliaExtractCleaner');
+jest.unmock('../../src/lib/aureliaExtractCleaner');
 
-require('jasmine-expect');
-const AureliaExtractCleaner = require('/src/lib/aureliaExtractCleaner');
+const AureliaExtractCleaner = require('../../src/lib/aureliaExtractCleaner');
 
 describe('AureliaExtractCleaner', () => {
-  it('should be a class and only available using \'new\'', () => {
+  it("should be a class and only available using 'new'", () => {
     // Given
     // When
     expect(() => {
       AureliaExtractCleaner('', {});
     })
-    // Then
-    .toThrow('Class constructor AureliaExtractCleaner cannot be invoked without \'new\'');
+      // Then
+      .toThrow("Class constructor AureliaExtractCleaner cannot be invoked without 'new'");
   });
 
   it('should be able to use default options', () => {
-    // Given
-    // When
+    // Given/When
     const cleaner = new AureliaExtractCleaner('code');
     // Then
     expect(cleaner.options).toEqual({
@@ -80,13 +78,15 @@ describe('AureliaExtractCleaner', () => {
     const cleaner = new AureliaExtractCleaner(customCode, customOptions);
     const processed = cleaner.process().trim();
     // Then
-    expect(processed).toBe(`
+    expect(processed).toBe(
+      `
       batman
       <require from="some/other/path/to/file.png" extract="true"></require>
-    `.trim());
+    `.trim(),
+    );
   });
 
-  it('shouldn\'t remove a tag located after one to remove', () => {
+  it("shouldn't remove a tag located after one to remove", () => {
     // Given
     const tagToIgnore = '<require from="some/other/path/to/file.scss"></require>';
     const customCode = `
@@ -100,7 +100,7 @@ describe('AureliaExtractCleaner', () => {
     expect(processed).toBe(tagToIgnore);
   });
 
-  it('shouldn\'t change the code if there are no require tags', () => {
+  it("shouldn't change the code if there are no require tags", () => {
     // Given
     const customCode = '<gotham>Batman</gotham>';
     // When

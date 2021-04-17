@@ -1,61 +1,72 @@
 /**
- * This is the _core_ of the `aurelia-extract-clean-loader`: The loader itself calls this class
- * in order too look for `require` tags that are being extracted by `extract-text-webpack-plugin`
+ * This is the _core_ of the `aurelia-extract-clean-loader`: The loader itself calls this
+ * class in order too look for `require` tags that are being extracted by
+ * `extract-text-webpack-plugin`
  * and remove them so Aurelia won't try to reprocess them on runtime.
  *
  * @class
  * @example
- * const html = 'Bat<require from="file.scss" extract="true"></require>man';
- * const cleaner = new AureliaExtractCleaner(html);
- * console.log(cleaner.process());
- * // It would output 'Batman'
+ *
+ *   const html = 'Bat<require from="file.scss" extract="true"></require>man';
+ *   const cleaner = new AureliaExtractCleaner(html);
+ *   console.log(cleaner.process());
+ *   // It would output 'Batman'
+ *
  */
 class AureliaExtractCleaner {
   /**
-   * Class constructor.
-   * @param {String} source       The HTML code where the `require` tags are going to be removed
-   *                              from.
-   * @param {Object} [options={}] Optional. A set of custom options to overwrites the default ones
-   *                              the class defines.
-   * @return {AureliaExtractCleaner} A new instance of this class.
+   * @param {string} source        The HTML code where the `require` tags are going to be
+   *                               removed from.
+   * @param {Object} [options={}]  Optional. A set of custom options to overwrites the
+   *                               default ones the class defines.
+   * @returns {AureliaExtractCleaner} A new instance of this class.
    */
   constructor(source, options = {}) {
     /**
      * A local reference to the HTML code the class received on the constructor.
-     * @type {String}
+     *
+     * @type {string}
      */
     this.source = source;
     /**
      * The setting options the class uses to look for tags to remove.
+     *
      * @type {Object}
-     * @property {Array}  extensions     The list of file extensions the class will use to filter
-     *                                   the tags to remove.
-     * @property {String} attributeName  The name of the attribute that must be present on a
-     *                                   `require` tag in order to be removed.
-     * @property {String} attributeValue The value of the attribute that must be present on a
-     *                                   `require` tag in order to be removed.
+     * @property {Array}  extensions      The list of file extensions the class will use
+     *                                    to filter the tags to remove.
+     * @property {string} attributeName   The name of the attribute that must be present
+     *                                    on a `require` tag in order to be removed.
+     * @property {string} attributeValue  The value of the attribute that must be present
+     *                                    on a `require` tag in order to be removed.
      */
-    this.options = Object.assign({
+    this.options = {
       extensions: ['css', 'scss', 'sass', 'less'],
       attributeName: 'extract',
       attributeValue: 'true',
-    }, options);
+      ...options,
+    };
     /**
-     * A set of useful regular expressions the class uses to look for tags and their attributes.
+     * A set of useful regular expressions the class uses to look for tags and their
+     * attributes.
+     *
      * @type {Object}
-     * @property {RegExp} requires   It searches for `require` tags that have a `from` attribute.
-     * @property {RegExp} attributes Searches all the attributes and their values from an HTML tag.
-     * @private
+     * @property {RegExp} requires    It searches for `require` tags that have a `from`
+     *                                attribute.
+     * @property {RegExp} attributes  Searches all the attributes and their values from an
+     *                                HTML tag.
+     * @access private
      * @ignore
      */
     this._regexs = {
-      requires: /<require.+?from=\\?["|'].*?\\?["|'].*?><\/require>/ig,
-      attributes: /(\S+)=\\?["']?((?:.(?!["']?\s+(?:\S+)=|\\?[>"']))+.)["']?/ig,
+      requires: /<require.+?from=\\?["|'].*?\\?["|'].*?><\/require>/gi,
+      attributes: /(\S+)=\\?["']?((?:.(?!["']?\s+(?:\S+)=|\\?[>"']))+.)["']?/gi,
     };
   }
   /**
    * Searches for the `require` tags, validates them and removed them from the code.
-   * @return {String} The HTML code without the extracted `require` tags.
+   *
+   * @returns {string} The. HTML code without the extracted `require`
+   *                   tags.
    */
   process() {
     const requires = this._getRequires();
@@ -69,12 +80,14 @@ class AureliaExtractCleaner {
     return this.source;
   }
   /**
-   * Get one of the class regular expressions by its name. I don't like accessing private properties
-   * without a method :P.
-   * @param {String} name The name of the regular expression as it's declared on the `_regex`
-   *                      property.
-   * @return {RegExp}
-   * @private
+   * Get one of the class regular expressions by its name. I don't like accessing private
+   * properties without a method :P.
+   *
+   * @param {string} name  The name of the regular expression as it's declared on the
+   *                       `_regex`
+   *                       property.
+   * @returns {RegExp}
+   * @access private
    * @ignore
    */
   _getRegex(name) {
@@ -82,9 +95,11 @@ class AureliaExtractCleaner {
   }
   /**
    * Find all the `require` tags on the HTML provided on the class constructor.
-   * @return {Array} This is the result of an iterable `.exec` call, so each item of the array is
-   *                 a match from a regular expression.
-   * @private
+   *
+   * @returns {Array} This. Is the result of an iterable `.exec`
+   *                  call,
+   *                  so each item of the array is a match from a regular expression.
+   * @access private
    * @ignore
    */
   _getRequires() {
@@ -99,12 +114,37 @@ class AureliaExtractCleaner {
     return tags;
   }
   /**
-   * Given a list of tags (the result from `_getRequires`), this method will filter them by
-   * validating its attributes against the class setting options (extension, and attribute name
-   * and value).
-   * @param {Array} tags A list of `require` tags generated by `_getRequires`.
-   * @return {Array} A filtered list of the same received tags.
-   * @private
+   * Get a dictionary with all the attributes a tag has.
+   *
+   * @param {string} tag  The HTML tag from where the attributes will be extracted.
+   * @returns {Object} A. Dictionary with the keys being the attributes names and the
+   *                   values the...
+   *
+   *                   well,
+   *                   the attributes values :P.
+   * @access private
+   * @ignore
+   */
+  _getTagAttributes(tag) {
+    const regex = this._getRegex('attributes');
+    const attrs = {};
+    let match = regex.exec(tag);
+    while (match) {
+      const [, name, value] = match;
+      attrs[name] = value;
+      match = regex.exec(tag);
+    }
+
+    return attrs;
+  }
+  /**
+   * Given a list of tags (the result from `_getRequires`), this method will filter them
+   * by validating its attributes against the class setting options (extension, and
+   * attribute name and value).
+   *
+   * @param {Array} tags  A list of `require` tags generated by `_getRequires`.
+   * @returns {Array} A. Filtered list of the same received tags.
+   * @access private
    * @ignore
    */
   _getTagsToExtract(tags) {
@@ -120,36 +160,18 @@ class AureliaExtractCleaner {
   }
   /**
    * Remove a list of `require` tags from the HTML code.
-   * This method doesn't return anything because the change is made on the class `source` property.
-   * @param {Array} tags The list of tags to remove (the actual string so it can be replaced by an
-   *                     empty string).
-   * @private
+   * This method doesn't return anything because the change is made on the class `source`
+   * property.
+   *
+   * @param {Array} tags  The list of tags to remove (the actual string so it can be
+   *                      replaced by an empty string).
+   * @access private
    * @ignore
    */
   _removeExtractedTags(tags) {
     tags.forEach((tag) => {
       this.source = this.source.replace(tag, '');
     });
-  }
-  /**
-   * Get a dictionary with all the attributes a tag has.
-   * @param {String} tag The HTML tag from where the attributes will be extracted.
-   * @return {Object} A dictionary with the keys being the attributes names and the values the...
-   *                  well, the attributes values :P.
-   * @private
-   * @ignore
-   */
-  _getTagAttributes(tag) {
-    const regex = this._getRegex('attributes');
-    const attrs = {};
-    let match = regex.exec(tag);
-    while (match) {
-      const [, name, value] = match;
-      attrs[name] = value;
-      match = regex.exec(tag);
-    }
-
-    return attrs;
   }
 }
 

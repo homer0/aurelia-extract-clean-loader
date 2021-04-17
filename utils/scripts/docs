@@ -1,2 +1,2 @@
 #!/bin/bash -e
-esdoc -c .esdoc.json
+jsdoc -c .jsdoc.js

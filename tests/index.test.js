@@ -1,10 +1,9 @@
 jest.mock('loader-utils');
-jest.unmock('/src/index');
+jest.unmock('../src/index');
 
-require('jasmine-expect');
 const loaderUtils = require('loader-utils');
-const AureliaExtractCleaner = require('/src/lib/aureliaExtractCleaner');
-const loader = require('/src/index');
+const AureliaExtractCleaner = require('../src/lib/aureliaExtractCleaner');
+const loader = require('../src/index');
 
 describe('aurelia-extract-clean-loader', () => {
   it('should instantiate AureliaExtractCleaner with the received source and options', () => {
@@ -22,8 +21,8 @@ describe('aurelia-extract-clean-loader', () => {
 
     // Then
     expect(processed).toBe(customCode);
-    expect(loaderUtils.getOptions.mock.calls.length).toBe(1);
-    expect(AureliaExtractCleaner.mock.calls.length).toBe(1);
+    expect(loaderUtils.getOptions).toHaveBeenCalledTimes(1);
+    expect(AureliaExtractCleaner).toHaveBeenCalledTimes(1);
     expect(AureliaExtractCleaner.mock.calls[0].length).toBe(2);
     expect(AureliaExtractCleaner.mock.calls[0][0]).toBe(customCode);
     expect(AureliaExtractCleaner.mock.calls[0][1]).toEqual(customOptions);
