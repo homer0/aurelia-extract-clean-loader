@@ -1,8 +1,11 @@
 # Aurelia Extract Clean
 
-[![Build Status](https://travis-ci.org/homer0/aurelia-extract-clean-loader.svg?branch=master)](https://travis-ci.org/homer0/aurelia-extract-clean-loader) [![Coverage Status](https://coveralls.io/repos/homer0/aurelia-extract-clean-loader/badge.svg?branch=master&service=github)](https://coveralls.io/github/homer0/aurelia-extract-clean-loader?branch=master) [![Dependencies status](https://david-dm.org/homer0/aurelia-extract-clean-loader.svg)](https://david-dm.org/homer0/aurelia-extract-clean-loader) [![Dev dependencies status](https://david-dm.org/homer0/aurelia-extract-clean-loader/dev-status.svg)](https://david-dm.org/homer0/aurelia-extract-clean-loader?type=dev)
+[![GitHub Workflow Status (main)](https://img.shields.io/github/workflow/status/homer0/aurelia-extract-clean-loader/Test/main?style=flat-square)](https://github.com/homer0/aurelia-extract-clean-loader/actions?query=workflow%3ATest)
+[![Coveralls github](https://img.shields.io/coveralls/github/homer0/aurelia-extract-clean-loader.svg?style=flat-square)](https://coveralls.io/github/homer0/aurelia-extract-clean-loader?branch=main)
+[![David](https://img.shields.io/david/dev/homer0/aurelia-extract-clean-loader.svg?style=flat-square)](https://david-dm.org/homer0/aurelia-extract-clean-loader)
 
-Remove [Aurelia](http://aurelia.io) `require` tags of files that are being extracted using the Webpack's [Mini CSS extract plugin](https://yarnpkg.com/en/package/mini-css-extract-plugin).
+
+Remove [Aurelia](https://aurelia.io) `require` tags of files that are being extracted using the Webpack's [Mini CSS extract plugin](https://yarnpkg.com/en/package/mini-css-extract-plugin).
 
 > If you are wondering why I built this, go to the [Motivation](#motivation) section.
 
@@ -76,33 +79,56 @@ That example would make the loader remove `require` tags like this one:
 
 ### NPM/Yarn Tasks
 
-| Task   | Description                         |
-|--------|-------------------------------------|
-| `test` | Run the project unit tests.         |
-| `lint` | Lint the project code.              |
-| `docs` | Generate the project documentation. |
+| Task       | Description                         |
+|------------|-------------------------------------|
+| `test`     | Run the project unit tests.         |
+| `lint`     | Lint the modified files.            |
+| `lint:all` | Lint the entire project code.       |
+| `docs`     | Generate the project documentation. |
 
 ### Repository hooks
 
-I use [husky](https://yarnpkg.com/en/package/husky) to automatically install the repository hooks so the code will be tested and linted before any commit and the dependencies updated after every merge. The configuration is on the `husky` property of the `package.json` and the hooks' files are on `./utils/hooks`.
+I use [`husky`](https://yarnpkg.com/package/husky) to automatically install the repository hooks so...
+
+1. The code will be formatted and linted before any commit.
+2. The dependencies will be updated after every merge.
+3. The tests will run before pushing.
+
+#### Commits convention
+
+I use [conventional commits](https://www.conventionalcommits.org) with [`commitizen`](https://yarnpkg.com/package/commitizen) in order to support semantic releases. The one that sets it up is actually husky, it installs a script that runs commitizen on the `git commit` command.
+
+The hook for this is on `./utils/hooks/prepare-commit-msg` and the configuration for comitizen is on the `config.commitizen` property of the `package.json`.
+
+### Releases
+
+I use [`semantic-release`](https://yarnpkg.com/package/semantic-release) and a GitHub action to automatically release on NPM everything that gets merged to main.
+
+The configuration for `semantic-release` is on `./releaserc` and the workflow for the release is on `./.github/workflow/release.yml`.
 
 ### Testing
 
-I use [Jest](https://facebook.github.io/jest/) with [Jest-Ex](https://yarnpkg.com/en/package/jest-ex) to test the project. The configuration file is on `./.jestrc.json`, the tests are on `./tests` and the script that runs it is on `./utils/scripts/test`.
+I use [Jest](https://facebook.github.io/jest/) to test the project.
 
-### Linting
+The configuration file is on `./.jestrc.js`, the tests are on `./tests` and the script that runs it is on `./utils/scripts/test`.
 
-I use [ESlint](http://eslint.org) with [my own custom configuration](http://yarnpkg.com/en/package/eslint-plugin-homer0) to validate all the JS code. The configuration file for the project code is on `./.eslintrc` and the one for the tests is on `./tests/.eslintrc`. There's also an `./.eslintignore` to exclude some files on the process. The script that runs it is on `./utils/scripts/lint`.
+### Linting && Formatting
+
+I use [ESlint](https://eslint.org) with [my own custom configuration](https://yarnpkg.com/en/package/@homer0/eslint-plugin) to validate all the JS code. The configuration file for the project code is on `./.eslintrc` and the one for the tests is on `./tests/.eslintrc`. There's also an `./.eslintignore` to exclude some files on the process. The script that runs it is on `./utils/scripts/lint-all`.
+
+For formatting I use [Prettier](https://prettier.io) with [my custom configuration](https://yarnpkg.com/en/package/@homer0/prettier-config). The configuration file for the project code is on `./.prettierrc`.
 
 ### Documentation
 
-I use [ESDoc](http://esdoc.org) to generate HTML documentation for the project. The configuration file is on `./.esdocrc.json` and the script that runs it is on `./utils/scripts/docs`.
+I use [JSDoc](https://jsdoc.app) to generate an HTML documentation site for the project.
+
+The configuration file is on `./.jsdoc.js` and the script that runs it is on `./utils/scripts/docs`.
 
 ## Motivation
 
 > I put this at the end because no one usually reads it :P.
 
-A few weeks ago I started playing around with [Aurelia](http://aurelia.io) and I really liked it. I think one of the best features is how it solves separation of concerns by using the `require` tag on the views to specify the dependencies of the UI while keeping the controller/model focused on the logic.
+A few weeks ago I started playing around with [Aurelia](https://aurelia.io) and I really liked it. I think one of the best features is how it solves separation of concerns by using the `require` tag on the views to specify the dependencies of the UI while keeping the controller/model focused on the logic.
 
 Now, I'm also a big fan of [Webpack](https://webpack.js.org/), so is not surprise I'm using both of them together; but here's the problem that made me write this loader:
 
