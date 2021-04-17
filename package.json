@@ -43,6 +43,12 @@
       "post-merge": "./utils/hooks/post-merge"
     }
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "prettier --write"
+    ]
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
