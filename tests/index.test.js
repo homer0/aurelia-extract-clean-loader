@@ -1,7 +1,5 @@
-jest.mock('loader-utils');
 jest.unmock('../src/index');
 
-const loaderUtils = require('loader-utils');
 const AureliaExtractCleaner = require('../src/lib/aureliaExtractCleaner');
 const loader = require('../src/index');
 
@@ -13,19 +11,17 @@ describe('aurelia-extract-clean-loader', () => {
       bruce: 'wayne',
       jason: 'todd',
     };
-
+    const loaderContext = {
+      getOptions: jest.fn(() => customOptions),
+    };
     // When
-    loaderUtils.getOptions.mockImplementationOnce(() => customOptions);
     AureliaExtractCleaner.prototype.process.mockImplementationOnce(() => customCode);
-    const processed = loader(customCode);
-
+    const processed = loader.apply(loaderContext, [customCode]);
     // Then
     expect(processed).toBe(customCode);
-    expect(loaderUtils.getOptions).toHaveBeenCalledTimes(1);
+    expect(loaderContext.getOptions).toHaveBeenCalledTimes(1);
     expect(AureliaExtractCleaner).toHaveBeenCalledTimes(1);
-    expect(AureliaExtractCleaner.mock.calls[0].length).toBe(2);
-    expect(AureliaExtractCleaner.mock.calls[0][0]).toBe(customCode);
-    expect(AureliaExtractCleaner.mock.calls[0][1]).toEqual(customOptions);
+    expect(AureliaExtractCleaner).toHaveBeenCalledWith(customCode, customOptions);
     expect(AureliaExtractCleaner.mock.instances.length).toBe(1);
     expect(AureliaExtractCleaner.mock.instances[0].process.mock.calls.length).toBe(1);
   });

@@ -11,9 +11,7 @@
     "extract",
     "stylesheet"
   ],
-  "dependencies": {
-    "loader-utils": "^3.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
